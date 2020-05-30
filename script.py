@@ -1,13 +1,9 @@
-import subprocess
+from data import find
 
-from db_engine import s, Emotion
-
-emotions = s.query(Emotion).all()
-subprocess.run('', shell=True)
 while True:
-    emotion = input("\n#\n")
-    item = s.query(Emotion).filter(Emotion.name == emotion).first()
+    term = input("\n#\n")
+    item = find(term)
     if item:
-        print(item.name, end="\n")
+        print(item.display(), end="\n")
     else:
-        print(f"Not found \"{emotion}\"")
+        print(f"Not found \"{term}\"")
