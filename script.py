@@ -9,13 +9,8 @@ def response(term):
     else:
         print(f"Not found \"{term}\"")
 
-# response("buồn")
-# response("vui")
-# response("hạnh phúc")
-# response("bất ngờ")
-response("giận dữ")
 
-
-# while True:
-#     term = input("\n#\n")
-#     response()
+if __name__ == '__main__':
+    while True:
+        term = input("\n#\n")
+        response(term)
