@@ -11,7 +11,7 @@ class Emotion:
             self.levels = ["tán thành", "tin tưởng", "ngưỡng mộ"]
 
     def display(self):
-        print("=======================")
+        print("=" * 80)
         if self.term:
             print(f"-> {self.term}")
         print(self.name)
