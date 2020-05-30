@@ -1,3 +1,4 @@
+from termcolor import colored
 class Emotion:
     def __init__(self, name, en=None, emoji=None):
         self.name = name
@@ -23,4 +24,14 @@ class Emotion:
         print(self.physical)
         if len(self.levels) > 0:
             print("\n# Levels")
-            print(" > ".join(self.levels))
+            n = len(self.levels)
+            s = ""
+            for i, level in enumerate(self.levels):
+                if level == self.name:
+                    s += "{" + level + "}"
+                else:
+                    s += level
+                if i != n - 1:
+                    s += " > "
+            print(s)
+
