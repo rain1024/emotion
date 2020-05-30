@@ -6,6 +6,7 @@ class Emotion:
         self.trigger = None
         self.physical = None
         self.term = None
+        self.levels = []
         if self.name == "tin tưởng":
             self.levels = ["tán thành", "tin tưởng", "ngưỡng mộ"]
 
