@@ -33,11 +33,11 @@ for item in synonym:
 df_levels = pd.read_excel("data/levels.xlsx")
 levels = list(df_levels.T.to_dict().values())
 for item in levels:
-    word1 = item["word1"]
-    word2 = item["word2"]
+    word = item["word"]
+    class_ = item["class"]
     score = item["score"]
-    if word2 not in words:
-        raise Exception(f"Cannot map term {word2}")
+    if class_ not in words:
+        raise Exception(f"Cannot map term {class_}")
 
 def get_all():
     return emotions
