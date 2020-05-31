@@ -5,7 +5,7 @@ import pandas as pd
 
 from model import Emotion
 
-df = pd.read_excel("data/emotions.xlsx")
+df = pd.read_excel("database/emotions.xlsx")
 df.fillna("", inplace=True)
 datasets = list(df.T.to_dict().values())
 
@@ -20,7 +20,7 @@ for item in datasets:
 for emotion in emotions:
     words[emotion.name] = emotion
 
-df_synonym = pd.read_excel("data/synonym.xlsx")
+df_synonym = pd.read_excel("database/synonym.xlsx")
 synonym = list(df_synonym.T.to_dict().values())
 synonym_words = {}
 for item in synonym:
@@ -30,7 +30,7 @@ for item in synonym:
         raise Exception(f"Cannot map term {word2}")
     synonym_words[word1] = words[word2]
 
-df_levels = pd.read_excel("data/levels.xlsx")
+df_levels = pd.read_excel("database/levels.xlsx")
 levels = list(df_levels.T.to_dict().values())
 for item in levels:
     word = item["word"]

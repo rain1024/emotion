@@ -1,6 +1,5 @@
 from data import find
 
-
 def response(term):
     item = find(term)
     if item:

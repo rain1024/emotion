@@ -4,7 +4,7 @@ from data import find
 from script import response
 
 
-class TestClassify(TestCase):
+class TestClagi ssify(TestCase):
     def test_1(self):
         response("buồn bã")
 
