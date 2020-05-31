@@ -15,7 +15,7 @@ class Emotion:
         print("=" * 80)
         if self.term:
             print(f"-> {self.term}")
-        print(self.name)
+        print(self.name.upper())
         print(self.en)
         print(self.emoji)
         print("# Trigger")
