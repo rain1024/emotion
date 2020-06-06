@@ -1,6 +1,4 @@
 from copy import copy
-
-from datasets import datasets
 import pandas as pd
 
 from model import Emotion
@@ -20,35 +18,61 @@ for item in datasets:
 for emotion in emotions:
     words[emotion.name] = emotion
 
-df_synonym = pd.read_excel("database/synonym.xlsx")
-synonym = list(df_synonym.T.to_dict().values())
-synonym_words = {}
-for item in synonym:
-    word1 = item["word1"]
-    word2 = item["word2"]
-    if word2 not in words:
-        raise Exception(f"Cannot map term {word2}")
-    synonym_words[word1] = words[word2]
 
-df_levels = pd.read_excel("database/levels.xlsx")
-levels = list(df_levels.T.to_dict().values())
-for item in levels:
-    word = item["word"]
-    class_ = item["class"]
-    score = item["score"]
-    if class_ not in words:
-        raise Exception(f"Cannot map term {class_}")
+
+class Synonym:
+    @staticmethod
+    def init():
+        df_synonym = pd.read_excel("database/synonym.xlsx")
+        synonym = list(df_synonym.T.to_dict().values())
+        terms = {}
+        for item in synonym:
+            term = item["term"]
+            class_ = item["class"]
+            if class_ not in words:
+                raise Exception(f"Cannot map term {word2}")
+            emotion = words[class_]
+            emotion.add_synonym(term)
+            terms[term] = emotion
+        Synonym.terms = terms
+
+    @staticmethod
+    def find(term):
+        if term in Synonym.terms:
+            item = copy(Synonym.terms[term])
+            item.term = term
+            return item
+        return None
+
+Synonym.init()
+
+class LevelC:
+    def __init__(self):
+        df_levels = pd.read_excel("database/levels.xlsx")
+        levels = list(df_levels.T.to_dict().values())
+        for item in levels:
+            word = item["word"]
+            class_ = item["class"]
+            score = item["score"]
+            if class_ not in words:
+                raise Exception(f"Cannot map term {class_}")
+        pass
+
+    def find(self, term):
+        pass
+
+Level = LevelC()
+
+
 
 def get_all():
     return emotions
 
 
-def find(term):
-    for emotion in emotions:
-        if emotion.name == term or emotion.en == term or emotion.emoji == term:
-            return emotion
-    if term in synonym_words:
-        item = copy(synonym_words[term])
-        item.term = term
-        return item
-    return None
+class Emotions:
+    @staticmethod
+    def find(term: str) -> Emotion:
+        for emotion in emotions:
+            if emotion.name == term or emotion.en == term or emotion.emoji == term:
+                return emotion
+        return Synonym.find(term)

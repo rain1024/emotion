@@ -1,4 +1,6 @@
 from termcolor import colored
+
+
 class Emotion:
     def __init__(self, name, en=None, emoji=None):
         self.name = name
@@ -8,8 +10,12 @@ class Emotion:
         self.physical = None
         self.term = None
         self.levels = []
+        self.synonym = set()
         if self.name == "tin tưởng":
             self.levels = ["tán thành", "tin tưởng", "ngưỡng mộ"]
+
+    def add_synonym(self, term):
+        self.synonym.add(term)
 
     def display(self):
         print("=" * 80)
@@ -22,6 +28,8 @@ class Emotion:
         print(self.trigger)
         print("\n# Physical")
         print(self.physical)
+        print("\n# Synonym")
+        print(", ".join(self.synonym))
         if len(self.levels) > 0:
             print("\n# Levels")
             n = len(self.levels)
@@ -34,4 +42,3 @@ class Emotion:
                 if i != n - 1:
                     s += " > "
             print(s)
-

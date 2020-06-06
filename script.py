@@ -1,7 +1,8 @@
-from data import find
+from data import Emotions
+
 
 def response(term):
-    item = find(term)
+    item = Emotions.find(term)
     if item:
         item.display()
         print()
