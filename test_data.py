@@ -1,7 +1,7 @@
 from unittest import TestCase
 
-from data import Level, Emotions
-from script import response
+from data import Emotions
+from chat import response
 
 
 class TestData(TestCase):
@@ -18,18 +18,20 @@ class TestData(TestCase):
         response("kinh tởm")
         response("sợ hãi")
 
-    def test_3(self):
+    def test_level_1(self):
+        term = "hậm hực"
+        emotion = Emotions.find(term)
+        print(emotion)
+        levels = ['tức giận', 'điên tiết', 'hậm hực']
+        self.assertEqual(emotion.levels, levels)
+
+    def test_level_2(self):
         term = "tin tưởng"
         response(term)
         emotion = Emotions.find(term)
-        levels = ["tán thành", "tin tưởng", "ngưỡng mộ"]
+        levels = ["tán thành", "ngưỡng mộ"]
         self.assertEqual(emotion.levels, levels)
         self.assertIsNotNone(emotion.levels)
-
-    def test_4(self):
-        term = "tin tưởng"
-        emotion = Level.find(term)
-        self.assertEqual(emotion.name, "tin tưởng")
 
     def test_find_1(self):
         term = "buồn"

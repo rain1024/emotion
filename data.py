@@ -30,7 +30,7 @@ class Synonym:
             term = item["term"]
             class_ = item["class"]
             if class_ not in words:
-                raise Exception(f"Cannot map term {word2}")
+                raise Exception(f"Cannot map term {class_}")
             emotion = words[class_]
             emotion.add_synonym(term)
             terms[term] = emotion
@@ -46,27 +46,26 @@ class Synonym:
 
 Synonym.init()
 
-class LevelC:
-    def __init__(self):
+class Levels:
+    @staticmethod
+    def init():
         df_levels = pd.read_excel("database/levels.xlsx")
         levels = list(df_levels.T.to_dict().values())
         for item in levels:
-            word = item["word"]
+            term = item["word"]
             class_ = item["class"]
             score = item["score"]
             if class_ not in words:
                 raise Exception(f"Cannot map term {class_}")
+            emotion = words[class_]
+            emotion.add_level(term, score)
         pass
 
-    def find(self, term):
+    @staticmethod
+    def find(term):
         pass
 
-Level = LevelC()
-
-
-
-def get_all():
-    return emotions
+Levels.init()
 
 
 class Emotions:
@@ -76,3 +75,7 @@ class Emotions:
             if emotion.name == term or emotion.en == term or emotion.emoji == term:
                 return emotion
         return Synonym.find(term)
+
+    @staticmethod
+    def get_all():
+        return emotions
