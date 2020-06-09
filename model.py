@@ -68,5 +68,4 @@ class Emotion:
                         s += ", "
                     else:
                         s += " > "
-
             print(s)
