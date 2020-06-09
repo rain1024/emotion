@@ -7,7 +7,7 @@ def response(term):
         item.display()
         print()
     else:
-        print(f"Not found \"{term}\"")
+        print(f"Không tìm thấy \"{term}\"")
 
 
 if __name__ == '__main__':

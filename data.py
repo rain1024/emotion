@@ -11,8 +11,11 @@ words = {}
 emotions = []
 for item in datasets:
     emotion = Emotion(item["name"], item["en"], item["emoji"])
-    emotion.trigger = item["trigger"]
-    emotion.physical = item["physical"]
+    emotion.definition = item["definition"]
+    emotion.physiology = item["physiology"]
+    emotion.behavior = item["behavior"]
+    emotion.action = item["action"]
+    emotion.note = item["note"]
     emotions.append(emotion)
 
 for emotion in emotions:
@@ -75,7 +78,3 @@ class Emotions:
             if emotion.name == term or emotion.en == term or emotion.emoji == term:
                 return emotion
         return Synonym.find(term)
-
-    @staticmethod
-    def get_all():
-        return emotions

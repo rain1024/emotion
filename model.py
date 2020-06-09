@@ -3,8 +3,9 @@ class Emotion:
         self.name = name
         self.en = en
         self.emoji = emoji
-        self.trigger = None
+        self.definition = None
         self.physical = None
+        self.behavior = None
         self.term = None
         self.levels = []
         self.synonym = set()
@@ -32,15 +33,29 @@ class Emotion:
             print(f"-> {self.term}")
         print(self.name.upper())
         print(self.en)
-        print(self.emoji)
-        print("# Trigger")
-        print(self.trigger)
-        print("\n# Physical")
-        print(self.physical)
-        print("\n# Synonym")
+        if self.emoji:
+            print(self.emoji)
+        print("\n# Định nghĩa")
+        if self.definition:
+            print(self.definition)
+        else:
+            print("TBD")
+        if self.physiology:
+            print("\n# Phản ứng sinh lý học")
+            print(self.physiology)
+        if self.behavior:
+            print("\n# Hành vi quan sát được")
+            print(self.behavior)
+        if self.action:
+            print("\n# Hành động")
+            print(self.action)
+        if self.note:
+            print("\n# Ghi chú")
+            print(self.note)
+        print("\n# Đồng nghĩa")
         print(", ".join(self.synonym))
         if len(self.levels) > 0:
-            print("\n# Levels")
+            print("\n# Cấp độ")
             n = len(self.levels)
             s = ""
             for i, level in enumerate(self.levels):
