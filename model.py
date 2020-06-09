@@ -64,11 +64,9 @@ class Emotion:
                 else:
                     s += level[0]
                 if i != n - 1:
-                    if i > 1:
-                        if self.levels[i][1] == self.levels[i+1][1]:
-                            s += ", "
-                        else:
-                            s += " > "
+                    if self.levels[i][1] == self.levels[i+1][1]:
+                        s += ", "
                     else:
                         s += " > "
+
             print(s)
