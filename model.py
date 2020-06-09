@@ -22,7 +22,7 @@ class Emotion:
         i = 1
         for t, s in self.levels:
             if s > score:
-                self.levels.insert(i, (term, score))
+                self.levels.insert(i-1, (term, score))
                 return
             i += 1
         self.levels.append((term, score))
@@ -64,5 +64,11 @@ class Emotion:
                 else:
                     s += level[0]
                 if i != n - 1:
-                    s += " > "
+                    if i > 1:
+                        if self.levels[i][1] == self.levels[i+1][1]:
+                            s += ", "
+                        else:
+                            s += " > "
+                    else:
+                        s += " > "
             print(s)
