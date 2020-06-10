@@ -2,6 +2,7 @@ from data import Emotions
 
 
 def response(term):
+    term = term.strip().lower()
     item = Emotions.find(term)
     if item:
         item.display()
