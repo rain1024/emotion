@@ -69,7 +69,7 @@ class Levels:
         pass
 
 Levels.init()
-
+print(0)
 
 class Emotions:
     @staticmethod
